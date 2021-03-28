@@ -68,7 +68,8 @@ import GameForm from '/@/components/GameForm.vue'
 
 // libs
 import { useRouter } from 'vue-router'
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
+import { omit } from 'ramda'
 
 // hooks
 import { handleCreateGame } from './utils/createGame'
@@ -93,6 +94,7 @@ const gameForm = ref<GSAPI.CreateGameInput>({
   title: '',
   description: '',
   genres: [],
+  genresIds: [],
   platform: '',
   picture: '',
 })
@@ -107,7 +109,18 @@ const handleUpdateForm = ({ key, value }: GSAPI.InputForm) => {
 const { executeMutation } = useMutation(CREATE_GAME)
 
 const onGameCreate = async () => {
-  await handleCreateGame(formError, gameForm.value, executeMutation)
+  const prepareForm = gameForm.value.genresIds
+    ? {
+        ...gameForm.value,
+        genres: gameForm.value.genresIds,
+      }
+    : gameForm.value
+
+  await handleCreateGame(
+    formError,
+    omit(['genresIds'], prepareForm),
+    executeMutation
+  )
   back()
 }
 

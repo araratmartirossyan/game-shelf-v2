@@ -7,12 +7,14 @@
         :size="100"
         fit="scale-down"
         src="/@/assets/game-controller.svg"
+        alt="game-image"
       />
       <el-avatar
         v-else
         shape="square"
         :size="100"
         :src="`${defaultUrl}${picture}`"
+        alt="empty picture image"
       />
     </div>
     <div class="game-card__description">
@@ -24,11 +26,11 @@
 
 <script setup lang="ts">
 // Components
-import Heading from '/@/components/Heading.vue';
+import Heading from '/@/components/Heading.vue'
 
-import { defineProps } from 'vue';
+import { defineProps } from 'vue'
 
-const defaultUrl = process.env.API_URL || 'https://graph.myshelf.info';
+const defaultUrl = process.env.API_URL || 'https://graph.myshelf.info'
 
 defineProps({
   title: {
@@ -43,7 +45,7 @@ defineProps({
     type: String,
     default: '',
   },
-});
+})
 </script>
 
 <style lang="scss">

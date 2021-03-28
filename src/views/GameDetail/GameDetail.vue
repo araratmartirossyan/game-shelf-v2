@@ -123,7 +123,7 @@ const handleDeleteGame = async () => {
 }
 
 .game-info {
-  padding: $spacing-s;
+  // padding: $spacing-s;
 
   &__header {
     display: flex;
@@ -140,7 +140,16 @@ const handleDeleteGame = async () => {
   }
 
   &__content {
-    margin-top: $spacing-m;
+    background: white;
+    box-shadow: rgb(0 0 0 / 10%) 0px -1px 0px 0px inset,
+      rgb(51 51 51 / 20%) 0px 2px 5px 0px;
+    z-index: 9999;
+    position: absolute;
+    top: 35%;
+    padding: 12px;
+    border-radius: 16px;
+
+    // margin-top: $spacing-m;
     &_text {
       display: flex;
       flex-direction: column;

@@ -34,7 +34,8 @@ export const searchGame = () => {
     return {
       title: fetchedGame.name,
       description: fetchedGame.description_raw,
-      genres: parsedGenres,
+      genres: parsedGenres.formValues,
+      genresIds: parsedGenres.apiValues
     }
   }
 

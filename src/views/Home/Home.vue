@@ -1,19 +1,27 @@
 <template>
   <tg-page class="list">
-    <template #top> Games </template>
+    <template #top> Games ({{ data && gamesList.length }}) </template>
     <template #append>
       <el-avatar
         shape="circle"
         :size="40"
         icon="el-icon-plus"
         class="add-icon"
+        alt="plus-icon"
         @click="push({ name: 'game-form-create' })"
       />
     </template>
 
     <div class="list-cards" v-if="!fetching">
+      <el-input
+        class="list-cards__search"
+        suffix-icon="el-icon-search"
+        placeholder="Поиск"
+        v-model="search"
+        clearable
+      />
       <game-card
-        v-for="{ id, title, description, picture } in data.games"
+        v-for="{ id, title, description, picture } in gamesList"
         :key="id"
         :description="description"
         :title="title"
@@ -25,8 +33,10 @@
 </template>
 
 <script setup lang="ts">
-//libs
+// libs
 import { useQuery } from '@urql/vue'
+import { ref, computed } from 'vue'
+import useFuse from '/@/hooks/useFuse'
 
 // components
 import GameCard from '/@/components/GameCardList.vue'
@@ -37,9 +47,15 @@ import GAMES_QUERY from '/@/graphql/queries/games.query.graphql'
 import { useRouter } from 'vue-router'
 
 // logic
-const { fetching, data } = useQuery({ query: GAMES_QUERY })
+const { fetching, data } = useQuery<GSAPI.GamesResponse>({ query: GAMES_QUERY })
 
 const { push } = useRouter()
+
+const search = ref('')
+
+const gamesList = computed(() =>
+  useFuse(data.value.games, search.value, { threshold: 0.3, keys: ['title'] })
+)
 </script>
 
 <style lang="scss">
@@ -52,6 +68,19 @@ const { push } = useRouter()
 }
 .list-cards {
   padding: $spacing-m;
+
+  &__search {
+    margin-bottom: $spacing-m;
+
+    // input {
+    //   height: 60px;
+    //   font-size: $font-size-heading-h5;
+    // }
+
+    // i {
+    //   font-size: $font-size-heading-h5;
+    // }
+  }
 }
 
 .add-icon {

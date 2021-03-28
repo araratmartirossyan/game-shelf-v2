@@ -13,6 +13,7 @@ declare namespace GSAPI {
     description?: string;
     id?: string;
     genres?: string[];
+    genresIds?: string[];
     platform?: string;
     picture?: string;
   }

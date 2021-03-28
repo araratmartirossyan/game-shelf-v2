@@ -15,7 +15,7 @@ function useFuse<T>(
     return fuse.value.search(searchTerm)
   })
 
-  return results.value.map(({ item }) => item)
+  return searchTerm ? results.value.map(({ item }) => item) : list
 }
 
 export default useFuse

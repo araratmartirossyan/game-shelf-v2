@@ -1,5 +1,5 @@
 export const prepareGenres = (currentGenres: RAWGAMEAPI.Genre[], genres: any) => {
-  return currentGenres
+  const valuesGenres = currentGenres
     .map(genre => genre.name)
     .map((genre: string) => {
       const findGenre = genres.find(
@@ -8,7 +8,12 @@ export const prepareGenres = (currentGenres: RAWGAMEAPI.Genre[], genres: any) =>
       return findGenre;
     })
     .filter((genre: any) => genre)
-    .map(genre => genre.title)
+
+
+  return {
+    formValues: valuesGenres.map(genre => genre.title),
+    apiValues: valuesGenres.map(genre => genre.id)
+  }
 }
 
 export const preparePlatforms = (currentPlatforms: any, platforms: Partial<GSAPI.Platform[]>) => {
