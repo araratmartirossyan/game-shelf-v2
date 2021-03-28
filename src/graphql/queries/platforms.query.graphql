@@ -1,0 +1,6 @@
+query Platforms($platform: String) {
+  platforms(limit: 500, where: { platform: $platform }) {
+    title
+    id
+  }
+}
