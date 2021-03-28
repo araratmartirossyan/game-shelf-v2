@@ -71,15 +71,6 @@ const gamesList = computed(() =>
 
   &__search {
     margin-bottom: $spacing-m;
-
-    // input {
-    //   height: 60px;
-    //   font-size: $font-size-heading-h5;
-    // }
-
-    // i {
-    //   font-size: $font-size-heading-h5;
-    // }
   }
 }
 

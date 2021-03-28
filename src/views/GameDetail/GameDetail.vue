@@ -123,8 +123,6 @@ const handleDeleteGame = async () => {
 }
 
 .game-info {
-  // padding: $spacing-s;
-
   &__header {
     display: flex;
 

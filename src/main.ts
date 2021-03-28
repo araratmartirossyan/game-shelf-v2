@@ -9,7 +9,6 @@ import router from "./router";
 
 const app = createApp(App)
 
-
 app.use(urql, { url: 'https://graph.myshelf.info/graphql' })
 app.use(router)
 app.use(ElementPlus)
