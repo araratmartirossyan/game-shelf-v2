@@ -2,9 +2,11 @@ import { createApp } from 'vue'
 import urql from '@urql/vue'
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
-import App from './App.vue'
+
+import './registerServiceWorker'
 
 // deps
+import App from './App.vue'
 import router from "./router";
 
 const app = createApp(App)
