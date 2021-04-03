@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 // Components
-import Heading from '/@/components/Heading.vue'
+const Heading = () => import('/@/components/Heading.vue')
 
 import { defineProps } from 'vue'
 
@@ -35,16 +35,16 @@ const defaultUrl = process.env.API_URL || 'https://graph.myshelf.info'
 defineProps({
   title: {
     type: String,
-    default: '',
+    default: ''
   },
   picture: {
     type: String,
-    default: null,
+    default: null
   },
   description: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 })
 </script>
 

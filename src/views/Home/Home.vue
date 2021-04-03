@@ -37,32 +37,35 @@
 <script setup lang="ts">
 // libs
 import { useQuery } from '@urql/vue'
-import { ref, computed, ComputedRef } from 'vue'
+import { ref, computed, defineAsyncComponent } from 'vue'
 import useFuse from '../../hooks/useFuse'
 
 // components
-import GameCard from '/@/components/GameCardList.vue'
-import TgPage from '/@/components/layout/Page.vue'
-
+const GameCard = defineAsyncComponent(
+  () => import('/@/components/GameCardList.vue')
+)
+const TgPage = defineAsyncComponent(
+  () => import('/@/components/layout/Page.vue')
+)
 // graphQl
 import GAMES_QUERY from '/@/graphql/queries/games.query.graphql'
 import { useRouter } from 'vue-router'
 
 // logic
 const { fetching, data } = useQuery({
-  query: GAMES_QUERY,
+  query: GAMES_QUERY
 })
 
 const { push } = useRouter()
 
 const search = ref('')
 
-const gamesList: ComputedRef<GSAPI.Game[]> = computed(() =>
+const gamesList = (computed(() =>
   useFuse(data?.value?.games, search.value, {
     threshold: 0.3,
-    keys: ['title'],
+    keys: ['title']
   })
-)
+) as unknown) as GSAPI.Game[]
 </script>
 
 <style lang="scss">

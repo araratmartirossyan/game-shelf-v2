@@ -1,8 +1,8 @@
-import { createWebHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from 'vue-router'
 
-import Home from "./views/Home/Home.vue";
-import GameForm from "./views/GameForm/GameForm.vue";
-import GameDetail from './views/GameDetail/GameDetail.vue'
+const Home = () => import('./views/Home/Home.vue')
+const GameForm = () => import('./views/GameForm/GameForm.vue')
+const GameDetail = () => import('./views/GameDetail/GameDetail.vue')
 
 const history = createWebHistory();
 

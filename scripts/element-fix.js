@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 fs.rmdirSync(path.resolve(__dirname, '../node_modules/.vite_opt_cache'), {
-  recursive: true,
+  recursive: true
 })
 
 const localePath = path.resolve(

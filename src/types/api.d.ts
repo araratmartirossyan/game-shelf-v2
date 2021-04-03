@@ -1,4 +1,5 @@
 declare namespace GSAPI {
+
   type GamesResponse = { games: Game[] }
   type GameResponse = {
     game: Game

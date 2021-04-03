@@ -63,8 +63,8 @@
 
 <script setup lang="ts">
 // layout
-import TgPage from '/@/components/layout/Page.vue'
-import GameForm from '/@/components/GameForm.vue'
+const TgPage = () => import('/@/components/layout/Page.vue')
+const GameForm = () => import('/@/components/GameForm.vue')
 
 // libs
 import { useRouter } from 'vue-router'

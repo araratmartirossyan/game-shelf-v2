@@ -6,5 +6,5 @@
 </template>
 
 <script setup lang="ts">
-import TgIcons from './components/Icons/TgIconRegistry.vue'
+const TgIcons = () => import('./components/Icons/TgIconRegistry.vue')
 </script>
