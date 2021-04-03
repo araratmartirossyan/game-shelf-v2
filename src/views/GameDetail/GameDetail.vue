@@ -61,7 +61,7 @@
 <script setup lang="ts">
 import TgPage from '/@/components/layout/Page.vue'
 import Heading from '/@/components/Heading.vue'
-import * as defaultImage from '/@/assets/game-controller.svg'
+import defaultImage from '/@/assets/game-controller.svg'
 
 // libs
 import { useQuery, useMutation } from '@urql/vue'

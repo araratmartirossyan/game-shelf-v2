@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
-    "deploy": "node scripts/gh.js"
+    "postinstall": "node ./scripts/element-fix.js"
   },
   "dependencies": {
     "@types/ramda": "^0.27.39",
