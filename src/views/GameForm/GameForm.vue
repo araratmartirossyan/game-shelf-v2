@@ -99,11 +99,11 @@ const gameForm = ref<GSAPI.CreateGameInput>({
   picture: '',
 })
 
-const formError = ref<string>(null)
+const formError = ref('')
 const formRef = ref(null)
 
 const handleUpdateForm = ({ key, value }: GSAPI.InputForm) => {
-  gameForm[key].value = value
+  gameForm[key as keyof GSAPI.CreateGameInput].value = value
 }
 
 const { executeMutation } = useMutation(CREATE_GAME)
@@ -124,7 +124,7 @@ const onGameCreate = async () => {
   back()
 }
 
-const onSetFoundGame = async (game) => {
+const onSetFoundGame = async (game: any) => {
   const convertedGame = await foundGame(game)
   gameForm.value = {
     ...gameForm.value,
@@ -135,7 +135,7 @@ const onSetFoundGame = async (game) => {
 // Image Logic
 const imageUrl = ref('')
 
-const handleUploadSuccess = ([res], file) => {
+const handleUploadSuccess = ([res]: any, file: any) => {
   imageUrl.value = URL.createObjectURL(file.raw)
   gameForm.value.picture = res._id
 }

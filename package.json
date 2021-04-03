@@ -4,12 +4,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "node scripts/gh.js"
   },
   "dependencies": {
+    "@types/ramda": "^0.27.39",
     "@urql/vue": "^0.3.0",
     "axios": "^0.21.1",
-    "element-plus": "^1.0.2-beta.35",
+    "element-plus": "^1.0.2-beta.36",
     "fuse.js": "^6.4.6",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
@@ -18,12 +20,15 @@
     "vue-router": "4.0.0-alpha.11"
   },
   "devDependencies": {
+    "@types/fuse": "^2.6.0",
+    "@types/lodash": "^4.14.168",
     "@vitejs/plugin-vue": "^1.1.4",
     "@vue/compiler-sfc": "^3.0.4",
     "sass": "^1.32.7",
     "subscriptions-transport-ws": "^0.9.18",
     "vite": "^1.0.0-rc.13",
     "vite-plugin-components": "^0.7.5",
-    "vite-plugin-graphql": "^0.1.0"
+    "vite-plugin-graphql": "^0.1.0",
+    "vue-tsc": "^0.0.17"
   }
 }

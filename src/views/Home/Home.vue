@@ -21,6 +21,7 @@
         clearable
       />
       <game-card
+        v-if="gamesList"
         v-for="{ id, title, description, picture } in gamesList"
         :key="id"
         :description="description"
@@ -28,6 +29,7 @@
         :picture="picture?.formats.thumbnail.url"
         @click="push({ name: 'game-detail', params: { id } })"
       />
+      <div v-else>Sorry nothing found</div>
     </div>
   </tg-page>
 </template>
@@ -35,8 +37,8 @@
 <script setup lang="ts">
 // libs
 import { useQuery } from '@urql/vue'
-import { ref, computed } from 'vue'
-import useFuse from '/@/hooks/useFuse'
+import { ref, computed, ComputedRef } from 'vue'
+import useFuse from '../../hooks/useFuse'
 
 // components
 import GameCard from '/@/components/GameCardList.vue'
@@ -47,14 +49,19 @@ import GAMES_QUERY from '/@/graphql/queries/games.query.graphql'
 import { useRouter } from 'vue-router'
 
 // logic
-const { fetching, data } = useQuery<GSAPI.GamesResponse>({ query: GAMES_QUERY })
+const { fetching, data } = useQuery({
+  query: GAMES_QUERY,
+})
 
 const { push } = useRouter()
 
 const search = ref('')
 
-const gamesList = computed(() =>
-  useFuse(data.value.games, search.value, { threshold: 0.3, keys: ['title'] })
+const gamesList: ComputedRef<GSAPI.Game[]> = computed(() =>
+  useFuse(data?.value?.games, search.value, {
+    threshold: 0.3,
+    keys: ['title'],
+  })
 )
 </script>
 

@@ -60,7 +60,7 @@
 import { ref, defineEmit, defineProps } from 'vue'
 
 import { useQuery } from '@urql/vue'
-import useFuse from '/@/hooks/useFuse'
+import useFuse from './../hooks/useFuse'
 
 // Graph Ql
 import FETCH_GENRE from '/@/graphql/queries/genres.query.graphql'
@@ -92,10 +92,10 @@ const rules = {
 }
 
 // Genres
-const foundGenres = ref<GSAPI.Genre[]>(null)
+const foundGenres = ref<GSAPI.Genre[]>([])
 const { data: genresResult } = useQuery({ query: FETCH_GENRE })
 
-const searchGenre = (title) => {
+const searchGenre = (title: string) => {
   foundGenres.value = useFuse<GSAPI.Genre>(genresResult.value.genres, title, {
     threshold: 0.3,
     keys: ['title'],
@@ -103,10 +103,10 @@ const searchGenre = (title) => {
 }
 
 // Platform
-const foundPlatforms = ref<GSAPI.Platform[]>(null)
+const foundPlatforms = ref<GSAPI.Platform[]>([])
 const { data: platformResult } = useQuery({ query: FETCH_PLATFORMS })
 
-const searchPlatform = (title) => {
+const searchPlatform = (title: string) => {
   foundPlatforms.value = useFuse<GSAPI.Platform>(
     platformResult.value.platforms,
     title,

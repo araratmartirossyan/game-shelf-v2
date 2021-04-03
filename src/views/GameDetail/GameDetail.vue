@@ -31,17 +31,17 @@
               {{ data.game.title }}
             </heading>
             <span class="game-info__content_platform">
-              {{ data.game.platform.title }}
+              {{ data?.game?.platform?.title }}
             </span>
 
             <div class="game-info__content_tags">
               <el-tag
                 class="game-info__content_tags"
                 v-for="tag in data?.game?.genres"
-                :key="tag.title"
+                :key="tag?.title"
                 type="info"
               >
-                #{{ tag.title }}
+                #{{ tag?.title }}
               </el-tag>
             </div>
           </div>
@@ -61,7 +61,7 @@
 <script setup lang="ts">
 import TgPage from '/@/components/layout/Page.vue'
 import Heading from '/@/components/Heading.vue'
-import defaultImage from '/@/assets/game-controller.svg'
+import * as defaultImage from '/@/assets/game-controller.svg'
 
 // libs
 import { useQuery, useMutation } from '@urql/vue'

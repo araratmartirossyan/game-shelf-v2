@@ -4,7 +4,7 @@ declare namespace GSAPI {
     game: Game
   }
   type InputForm = {
-    key: string
+    key: 'title' | 'description' | 'genres' | 'genresIds' | 'platform' | 'picture'
     value: string
   }
 
@@ -22,7 +22,7 @@ declare namespace GSAPI {
     title?: string;
     description?: string;
     id?: string;
-    genres?: Genre;
+    genres?: Genre[];
     platform?: Platform;
     createdAt?: string;
     updatedAt?: string;
@@ -65,3 +65,11 @@ declare namespace GSAPI {
     id?: string;
   }
 }
+
+type Nullable<T> = {
+  [P in keyof T]: T[P] | null
+}
+
+type ComponentSize = any;
+
+type SFCWithInstall = any;
